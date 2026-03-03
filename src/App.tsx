@@ -28,7 +28,7 @@ function App() {
               <figcaption>Feti Sanaç</figcaption>
             </figure>
             <div>
-              <p>Merhaba! Ben Feti. Bilgisayar Mühendisliği öğrencisiyim. Web geliştirme ve yazılım mimarisi üzerine çalışıyorum. Arta kalan zamanlarımda ise One Piece ve Demon Slayer gibi serilerle vakit geçirmeyi seviyorum.</p>
+              <p>Merhaba! Ben Feti. yazılım mühendisliği öğrencisiyim. Web geliştirme ve yazılım mimarisi üzerine çalışıyorum. Arta kalan zamanlarımda ise One Piece ve Demon Slayer gibi serilerle vakit geçirmeyi seviyorum.</p>
               <br/>
               <ul className="skill-tags" role="list" aria-label="Beceri etiketleri">
                 <li>React</li>
