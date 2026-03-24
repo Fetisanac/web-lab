@@ -1,112 +1,162 @@
-function App() {
-  return (
-    <>
-      {/* LAB-2: Klavye kullanıcıları için Ana İçeriğe Atla linki */}
-      <a href="#main-content" className="skip-link">Ana içeriğe atla</a>
+import Button from './components/Button';
+import Input from './components/Input';
+import Card from './components/Card';
 
-      <header>
-        {/* LAB-2: Başlık hiyerarşisi için sayfadaki tek h1 */}
-        <h1 className="site-title">Feti Sanaç</h1>
-        {/* LAB-2: Ekran okuyucular için aria-label */}
-        <nav aria-label="Ana navigasyon">
-          <ul>
-            <li><a href="#hakkimda">Hakkımda</a></li>
-            <li><a href="#projeler">Projeler</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
-          </ul>
-        </nav>
+function App() {
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle('dark');
+  };
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-gray-950 font-sans transition-colors">
+      
+      {/* Erişilebilirlik: Ana İçeriğe Atla (Sadece Tab ile görünür) */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-800 text-white p-2 z-50">
+        Ana içeriğe atla
+      </a>
+
+      {/* Tema Değiştirme Butonu */}
+      <button
+        onClick={toggleTheme}
+        className="fixed bottom-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+        aria-label="Tema degistir"
+      >
+        <span className="dark:hidden text-xl">☾</span>
+        <span className="hidden dark:inline text-xl">☀</span>
+      </button>
+
+      {/* HEADER VE NAVİGASYON */}
+      <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <h1 className="text-xl font-bold text-blue-800 dark:text-blue-300">
+            Feti Sanaç
+          </h1>
+          <nav aria-label="Ana navigasyon">
+            <ul className="flex flex-wrap gap-2">
+              <li>
+                <a href="#hakkimda" className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors">
+                  Hakkımda
+                </a>
+              </li>
+              <li>
+                <a href="#projeler" className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors">
+                  Projeler
+                </a>
+              </li>
+              <li>
+                <a href="#iletisim" className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors">
+                  İletişim
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
 
-      {/* LAB-2: Ana içerik kapsayıcısı */}
       <main id="main-content">
-        <section id="hakkimda">
-          <h2>Hakkımda</h2>
-          <div className="about-content">
-            {/* LAB-2: figure ve figcaption kullanımı */}
-            <figure>
-              <img src="https://via.placeholder.com/200" alt="Feti'nin profil fotoğrafı" />
-              <figcaption>Feti Sanaç</figcaption>
+        {/* HAKKIMDA BÖLÜMÜ */}
+        <section id="hakkimda" className="py-16 px-4">
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
+            <figure className="shrink-0">
+              <img 
+                src="https://via.placeholder.com/160" 
+                alt="Feti Sanaç profil fotoğrafı" 
+                className="w-40 h-40 rounded-full object-cover shadow-lg" 
+              />
             </figure>
             <div>
-              <p>Merhaba! Ben Feti. yazılım mühendisliği öğrencisiyim. Web geliştirme ve yazılım mimarisi üzerine çalışıyorum. Arta kalan zamanlarımda ise One Piece ve Demon Slayer gibi serilerle vakit geçirmeyi seviyorum.</p>
-              <br/>
-              <ul className="skill-tags" role="list" aria-label="Beceri etiketleri">
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>CSS Grid</li>
-                <li>Flexbox</li>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center md:text-left">
+                Hakkımda
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                Merhaba! Ben Sakarya Üniversitesi'nde Bilgisayar Mühendisliği öğrencisiyim. Modern web teknolojileri, yazılım mimarisi ve mikroservis yapıları üzerine çalışmalar yapıyorum. Kodlamadan arta kalan zamanlarımda Demon Slayer ve One Piece gibi serileri takip etmekten keyif alırım.
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">Java</li>
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">React</li>
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">Tailwind CSS</li>
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">C#</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <section id="projeler">
-          <h2>Projelerim</h2>
-          <div className="project-grid">
-            <article className="project-card">
-              {/* LAB-2: Anlamlı alt metinler */}
-              <img src="https://via.placeholder.com/400x200" alt="E-Ticaret sitesi anasayfa ekran görüntüsü" />
-              <h3>E-Ticaret Sitesi</h3>
-              <p>React ve Node.js ile geliştirilmiş tam kapsamlı bir e-ticaret uygulaması.</p>
-              <ul className="skill-tags">
-                <li>React</li>
-                <li>Node.js</li>
-              </ul>
-            </article>
-            <article className="project-card">
-              <img src="https://via.placeholder.com/400x200" alt="Blog uygulaması yazı listesi görünümü" />
-              <h3>Blog Uygulaması</h3>
-              <p>Kişisel blog platformu. Markdown destekli yazı editörü.</p>
-              <ul className="skill-tags">
-                <li>TypeScript</li>
-                <li>Next.js</li>
-              </ul>
-            </article>
+        {/* PROJELER BÖLÜMÜ */}
+        <section id="projeler" className="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
+              Projelerim
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              <Card 
+                variant="elevated" 
+                title="BookVerse Mimari Projesi" 
+                image="https://via.placeholder.com/400x200" 
+                imageAlt="BookVerse ekran görüntüsü"
+              >
+                C4 modelleri kullanılarak tasarlanmış, yazılım mimarisi odaklı proje.
+              </Card>
+
+              <Card 
+                variant="elevated" 
+                title="Diş Kliniği Otomasyonu" 
+                image="https://via.placeholder.com/400x200" 
+                imageAlt="Otomasyon ekran görüntüsü"
+              >
+                Klinik süreçlerini hızlandırmak için geliştirilmiş yönetim sistemi otomasyonu.
+              </Card>
+
+              <Card 
+                variant="elevated" 
+                title="Ostam Crafts" 
+                image="https://via.placeholder.com/400x200" 
+                imageAlt="Etsy mağaza arayüzü"
+                footer={<Button size="sm" variant="ghost">İncele</Button>}
+              >
+                Etsy üzerinde hoodie ve tasarım ürünler sergilediğim e-ticaret mağazası.
+              </Card>
+
+            </div>
           </div>
         </section>
 
-        {/* LAB-2: Doğrulamalı ve Erişilebilir İletişim Formu */}
-        <section id="iletisim">
-          <h2>İletişim</h2>
-          <form action="#" method="POST" noValidate>
-            <fieldset>
-              <legend>İletişim Formu</legend>
-              <div className="form-group">
-                <label htmlFor="name">Ad Soyad:</label>
-                <input type="text" id="name" name="name" required minLength={2} aria-describedby="name-error" />
-                <small id="name-error" className="error-msg" role="alert"></small>
+        {/* İLETİŞİM BÖLÜMÜ */}
+        <section id="iletisim" className="py-16 px-4">
+          <div className="max-w-lg mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+              İletişim
+            </h2>
+            <form className="space-y-4">
+              <Input id="name" label="Ad Soyad" required />
+              <Input id="email" label="E-posta" type="email" required />
+              
+              <div className="space-y-1">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Mesajınız
+                </label>
+                <textarea 
+                  id="message" 
+                  rows={5} 
+                  required 
+                  className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
+                ></textarea>
               </div>
-              <div className="form-group">
-                <label htmlFor="email">E-posta:</label>
-                <input type="email" id="email" name="email" required aria-describedby="email-error" />
-                <small id="email-error" className="error-msg" role="alert"></small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="subject">Konu:</label>
-                <select id="subject" name="subject" required aria-describedby="subject-error">
-                  <option value="">-- Seçiniz --</option>
-                  <option value="is">İş Teklifi</option>
-                  <option value="soru">Soru</option>
-                  <option value="oneri">Öneri</option>
-                </select>
-                <small id="subject-error" className="error-msg" role="alert"></small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Mesajınız:</label>
-                <textarea id="message" name="message" rows={5} required minLength={10} aria-describedby="message-error"></textarea>
-                <small id="message-error" className="error-msg" role="alert"></small>
-              </div>
-              <button type="submit">Gönder</button>
-            </fieldset>
-          </form>
+              
+              <Button variant="primary" size="lg" type="submit" className="w-full">
+                Gönder
+              </Button>
+            </form>
+          </div>
         </section>
       </main>
 
-      <footer>
-        <p>&copy; 2024 Feti Sanaç. Web Tasarımı ve Programlama LAB-3.</p>
+      {/* FOOTER */}
+      <footer className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 text-center py-6 px-4 text-gray-500 dark:text-gray-400 text-sm">
+        <p>&copy; 2026 Feti Sanaç. Tüm hakları saklıdır.</p>
       </footer>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
